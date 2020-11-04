@@ -7,9 +7,14 @@ import androidx.lifecycle.ViewModel
 import com.weatherapp.movieadda_kotlin.data.pojo.home.TrendingMovies
 import com.weatherapp.movieadda_kotlin.data.pojo.home.TrendingPerson
 import com.weatherapp.movieadda_kotlin.data.pojo.home.TrendingTvShow
+import com.weatherapp.movieadda_kotlin.data.pojo.home.UpcomingMovies
 import com.weatherapp.movieadda_kotlin.data.repo.trending.TrendingRepository
+import com.weatherapp.movieadda_kotlin.data.repo.upcoming.UpcomingRepository
 
 public class HomeViewModel : ViewModel() {
+
+     private var upcoming: UpcomingRepository = UpcomingRepository()
+    private lateinit var ucoming_movie:MutableLiveData<UpcomingMovies>
 
      private  var trerepo: TrendingRepository = TrendingRepository()
      private lateinit var mutable: MutableLiveData<TrendingPerson>
@@ -46,6 +51,17 @@ public class HomeViewModel : ViewModel() {
         else{
             mutable_TvShow = trerepo.getTrendingTvShow()
             return mutable_TvShow
+        }
+    }
+
+    fun getUpcomingMovies():LiveData<UpcomingMovies>{
+
+        if (this::ucoming_movie.isInitialized){
+            return ucoming_movie
+        }
+        else{
+            ucoming_movie = upcoming.getUpcomingMovies()
+            return ucoming_movie
         }
     }
 }

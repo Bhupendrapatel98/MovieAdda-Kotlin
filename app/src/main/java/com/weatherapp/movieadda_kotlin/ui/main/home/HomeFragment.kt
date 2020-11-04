@@ -14,6 +14,7 @@ import com.weatherapp.movieadda_kotlin.data.repo.trending.TrendingRepository
 import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.TrendingAdapter
 import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.TrendingMoviesAdapter
 import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.TrendingTvShowAdapter
+import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.UpcomigMoviesAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -45,13 +46,20 @@ class HomeFragment : Fragment() {
             trending_recycler?.adapter = trendingMoviesAdapter
         })
 
-        //get Trending Movies
+        //get Trending Tv Show
         vmodel.getTrendingTvShow().observe(this, Observer {
-
 
             trending_tvs_recycler?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             val trendingTvShowAdapter = TrendingTvShowAdapter(it.results)
             trending_tvs_recycler?.adapter = trendingTvShowAdapter
+        })
+
+        //get Upcoming Movies
+        vmodel.getUpcomingMovies().observe(this, Observer {
+
+            upcoming_mov_recycler?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            val upcomigMovieAdapter = UpcomigMoviesAdapter(it.results)
+            upcoming_mov_recycler?.adapter = upcomigMovieAdapter
         })
 
         return view
