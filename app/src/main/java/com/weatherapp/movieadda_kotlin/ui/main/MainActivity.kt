@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.ListFragment
 import com.weatherapp.movieadda_kotlin.R
 import com.weatherapp.movieadda_kotlin.ui.main.home.HomeFragment
+import com.weatherapp.movieadda_kotlin.ui.main.list.MovieListFragment
 import com.weatherapp.movieadda_kotlin.ui.main.menu.MenuFragment
 import com.weatherapp.movieadda_kotlin.ui.main.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.MyLists -> {
-                    replace(ListFragment())
+                    replace(MovieListFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.Menu -> {

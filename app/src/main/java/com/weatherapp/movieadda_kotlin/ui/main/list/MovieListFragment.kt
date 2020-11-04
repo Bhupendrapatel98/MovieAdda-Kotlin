@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.weatherapp.movieadda_kotlin.R
 
 
-class ListFragment : Fragment() {
+class MovieListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
