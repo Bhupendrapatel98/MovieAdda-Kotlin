@@ -65,7 +65,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp">
 
-                  <!--  <ss.com.bannerslider.Slider
+                    <ss.com.bannerslider.Slider
                         android:id="@+id/banner_slider"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
@@ -73,7 +73,7 @@
                         app:slider_loopSlides="true"
                         app:slider_defaultBanner="1"
                         app:slider_hideIndicators="true"
-                        />-->
+                        />
 
                 </androidx.cardview.widget.CardView>
 

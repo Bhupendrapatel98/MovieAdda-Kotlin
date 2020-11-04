@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.weatherapp.movieadda_kotlin.R
 import com.weatherapp.movieadda_kotlin.data.repo.trending.TrendingRepository
+import com.weatherapp.movieadda_kotlin.data.utils.PicassoImageLoadingService
 import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import ss.com.bannerslider.Slider
+import ss.com.bannerslider.adapters.SliderAdapter
 
 class HomeFragment : Fragment() {
 
@@ -57,6 +60,12 @@ class HomeFragment : Fragment() {
             upcoming_mov_recycler?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             val upcomigMovieAdapter = UpcomigMoviesAdapter(it.results)
             upcoming_mov_recycler?.adapter = upcomigMovieAdapter
+
+            //slider
+            Slider.init( PicassoImageLoadingService());
+
+            val slider_adapter = MainSliderAdapter(it.results)
+             banner_slider.setAdapter(slider_adapter)
         })
 
         //get Popular Movies
