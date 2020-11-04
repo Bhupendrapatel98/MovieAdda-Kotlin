@@ -5,16 +5,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClint {
 
-    companion object{
+    companion object {
 
-        lateinit var retrofit:Retrofit
+        lateinit var retrofit: Retrofit
 
-        fun getRetrofitClint(s:String):Retrofit{
+        fun getRetrofitClint(s: String): Retrofit {
 
-            if (this::retrofit.isInitialized){
+            if (this::retrofit.isInitialized) {
                 return retrofit
-            }
-            else{
+            } else {
                 retrofit = Retrofit.Builder()
                     .baseUrl(s)
                     .addConverterFactory(GsonConverterFactory.create())
