@@ -4,16 +4,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.weatherapp.movieadda_kotlin.data.pojo.home.TrendingMovies
-import com.weatherapp.movieadda_kotlin.data.pojo.home.TrendingPerson
-import com.weatherapp.movieadda_kotlin.data.pojo.home.TrendingTvShow
-import com.weatherapp.movieadda_kotlin.data.pojo.home.UpcomingMovies
+import com.weatherapp.movieadda_kotlin.data.pojo.home.*
+import com.weatherapp.movieadda_kotlin.data.repo.popular.PopularRepository
 import com.weatherapp.movieadda_kotlin.data.repo.trending.TrendingRepository
 import com.weatherapp.movieadda_kotlin.data.repo.upcoming.UpcomingRepository
 
 public class HomeViewModel : ViewModel() {
 
-     private var upcoming: UpcomingRepository = UpcomingRepository()
+    private var popular: PopularRepository = PopularRepository()
+    private lateinit var popular_movie:MutableLiveData<PopularMovie>
+
+    private var upcoming: UpcomingRepository = UpcomingRepository()
     private lateinit var ucoming_movie:MutableLiveData<UpcomingMovies>
 
      private  var trerepo: TrendingRepository = TrendingRepository()
@@ -62,6 +63,17 @@ public class HomeViewModel : ViewModel() {
         else{
             ucoming_movie = upcoming.getUpcomingMovies()
             return ucoming_movie
+        }
+    }
+
+    fun getPopularMovies():LiveData<PopularMovie>{
+
+        if (this::popular_movie.isInitialized){
+            return popular_movie
+        }
+        else{
+            popular_movie = popular.getPopularMovies()
+            return popular_movie
         }
     }
 }

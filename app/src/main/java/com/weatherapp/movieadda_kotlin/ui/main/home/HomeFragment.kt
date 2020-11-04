@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.weatherapp.movieadda_kotlin.R
 import com.weatherapp.movieadda_kotlin.data.repo.trending.TrendingRepository
-import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.TrendingAdapter
-import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.TrendingMoviesAdapter
-import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.TrendingTvShowAdapter
-import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.UpcomigMoviesAdapter
+import com.weatherapp.movieadda_kotlin.ui.main.home.adapter.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -60,6 +57,14 @@ class HomeFragment : Fragment() {
             upcoming_mov_recycler?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             val upcomigMovieAdapter = UpcomigMoviesAdapter(it.results)
             upcoming_mov_recycler?.adapter = upcomigMovieAdapter
+        })
+
+        //get Popular Movies
+        vmodel.getPopularMovies().observe(this, Observer {
+
+            popular_mov_recycler?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            val popularMoviesAdapter = PopularMoviesAdapter(it.results)
+            popular_mov_recycler?.adapter = popularMoviesAdapter
         })
 
         return view
