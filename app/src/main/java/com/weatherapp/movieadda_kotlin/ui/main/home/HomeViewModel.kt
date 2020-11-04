@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.weatherapp.movieadda_kotlin.data.pojo.home.*
 import com.weatherapp.movieadda_kotlin.data.repo.popular.PopularRepository
+import com.weatherapp.movieadda_kotlin.data.repo.topRated.TopRatedRepository
 import com.weatherapp.movieadda_kotlin.data.repo.trending.TrendingRepository
 import com.weatherapp.movieadda_kotlin.data.repo.upcoming.UpcomingRepository
 
@@ -13,6 +14,9 @@ public class HomeViewModel : ViewModel() {
 
     private var popular: PopularRepository = PopularRepository()
     private lateinit var popular_movie:MutableLiveData<PopularMovie>
+
+    private var toprated: TopRatedRepository = TopRatedRepository()
+    private lateinit var toprated_movie:MutableLiveData<TopRatedMovies>
 
     private var upcoming: UpcomingRepository = UpcomingRepository()
     private lateinit var ucoming_movie:MutableLiveData<UpcomingMovies>
@@ -74,6 +78,17 @@ public class HomeViewModel : ViewModel() {
         else{
             popular_movie = popular.getPopularMovies()
             return popular_movie
+        }
+    }
+
+    fun getTopratedMovies():LiveData<TopRatedMovies>{
+
+        if (this::toprated_movie.isInitialized){
+            return toprated_movie
+        }
+        else{
+            toprated_movie = toprated.getTopratedMovies()
+            return toprated_movie
         }
     }
 }

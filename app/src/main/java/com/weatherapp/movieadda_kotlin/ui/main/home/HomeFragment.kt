@@ -67,6 +67,14 @@ class HomeFragment : Fragment() {
             popular_mov_recycler?.adapter = popularMoviesAdapter
         })
 
+        //get toprated Movies
+        vmodel.getTopratedMovies().observe(this, Observer {
+
+            top_rat_recycler?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            val topRatedMoviesAdapter = TopRatedMoviesAdapter(it.results)
+            top_rat_recycler?.adapter = topRatedMoviesAdapter
+        })
+
         return view
     }
 }
